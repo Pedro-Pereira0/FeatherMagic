@@ -1,17 +1,18 @@
-class meeting:
-    title: str
-    creator: str
-    description: str
-    date: str
-    start_time: str
-    end_time: str
-    num_of_participants: int
+from datetime import date as date_type, time as time_type
 
-    def __init__(self, title: str, creator: str, description: str, date: str, start_time: str, end_time: str, num_of_participants: int):
-        self.title = title
-        self.creator = creator
-        self.description = description
-        self.date = date
-        self.start_time = start_time
-        self.end_time = end_time
-        self.num_of_participants = num_of_participants
+from sqlalchemy import Date, Integer, String, Time
+from sqlalchemy.orm import Mapped, mapped_column
+
+from .base import Base
+
+
+class Meeting(Base):
+    __tablename__ = "meetings"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    title: Mapped[str] = mapped_column(String(255), nullable=False)
+    creator: Mapped[str] = mapped_column(String(255), nullable=False)
+    description: Mapped[str] = mapped_column(String, nullable=False)
+    date: Mapped[date_type] = mapped_column(Date, nullable=False)
+    duration: Mapped[time_type] = mapped_column(Time, nullable=False)
+    num_of_participants: Mapped[int] = mapped_column(Integer, nullable=False)
