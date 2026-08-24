@@ -77,7 +77,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="puafkbDnf8dPpNaNZ2eT" name="Context">
-    <mxGraphModel dx="1717" dy="1045" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1447" dy="843" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -110,11 +110,19 @@
         <mxCell id="t39ionVoB8YJnqfPsiMB-12" edge="1" parent="1" source="t39ionVoB8YJnqfPsiMB-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="t39ionVoB8YJnqfPsiMB-11">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <object placeholders="1" c4Name="Amalia" c4Type="LLM" c4Description="LLM for writing in portuguese" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="to1bhu1m_b9K63p1b5NY-1">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry height="120" width="240" y="430" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="to1bhu1m_b9K63p1b5NY-2" edge="1" parent="1" source="t39ionVoB8YJnqfPsiMB-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="to1bhu1m_b9K63p1b5NY-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="Container" id="rgU4wwInlkDk_W0Nb8QG">
-    <mxGraphModel dx="2321" dy="896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2185" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="e5idseT7FKiQs7tQ4yzY-0" />
         <mxCell id="e5idseT7FKiQs7tQ4yzY-1" parent="e5idseT7FKiQs7tQ4yzY-0" />
@@ -154,7 +162,7 @@
         <mxCell id="Ba1CfMF-a1IP3b8vGIQ_-4" edge="1" parent="e5idseT7FKiQs7tQ4yzY-1" source="e5idseT7FKiQs7tQ4yzY-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="Ba1CfMF-a1IP3b8vGIQ_-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <object placeholders="1" c4Name="Database" c4Type="Container" c4Technology="e.g. PostgreSQL" c4Description="Description of storage type container role/responsibility." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="Ba1CfMF-a1IP3b8vGIQ_-5">
+        <object placeholders="1" c4Name="Database" c4Type="Container" c4Technology="e.g. sqlite" c4Description="Description of storage type container role/responsibility." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="Ba1CfMF-a1IP3b8vGIQ_-5">
           <mxCell parent="e5idseT7FKiQs7tQ4yzY-1" style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" vertex="1">
             <mxGeometry height="120" width="240" x="295" y="620" as="geometry" />
           </mxCell>
@@ -168,11 +176,19 @@
         <mxCell id="Ba1CfMF-a1IP3b8vGIQ_-8" edge="1" parent="e5idseT7FKiQs7tQ4yzY-1" source="Ba1CfMF-a1IP3b8vGIQ_-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="Ba1CfMF-a1IP3b8vGIQ_-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <object placeholders="1" c4Name="Amalia" c4Type="LLM" c4Description="LLM for writing in portuguese" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="MzjqS0xe37-CdZ_0H-t6-0">
+          <mxCell parent="e5idseT7FKiQs7tQ4yzY-1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry height="120" width="240" x="-190" y="620" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="MzjqS0xe37-CdZ_0H-t6-1" edge="1" parent="e5idseT7FKiQs7tQ4yzY-1" source="Ba1CfMF-a1IP3b8vGIQ_-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="MzjqS0xe37-CdZ_0H-t6-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="Component" id="5HHryTz6yJZl-CPUKL3o">
-    <mxGraphModel dx="1471" dy="896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1736" dy="1014" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="F7jvhw_SctpLAFtMkDdi-0" />
         <mxCell id="F7jvhw_SctpLAFtMkDdi-1" parent="F7jvhw_SctpLAFtMkDdi-0" />
@@ -183,22 +199,22 @@
         </object>
         <object placeholders="1" c4Name="Whisper" c4Type="Software System" c4Description="Makes the transcription of the audio" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="F7jvhw_SctpLAFtMkDdi-3">
           <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
-            <mxGeometry height="120" width="240" x="740" y="390" as="geometry" />
+            <mxGeometry height="120" width="240" x="1155" y="230" as="geometry" />
           </mxCell>
         </object>
         <object placeholders="1" c4Name="QWEN3" c4Type="LLM" c4Description="LLM" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="F7jvhw_SctpLAFtMkDdi-4">
           <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
-            <mxGeometry height="120" width="240" x="740" y="700" as="geometry" />
+            <mxGeometry height="120" width="240" x="1030" y="720" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Database" c4Type="Container" c4Technology="e.g. PostgreSQL" c4Description="Description of storage type container role/responsibility." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="F7jvhw_SctpLAFtMkDdi-10">
+        <object placeholders="1" c4Name="Database" c4Type="Container" c4Technology="e.g. sqlite" c4Description="Description of storage type container role/responsibility." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="F7jvhw_SctpLAFtMkDdi-10">
           <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" vertex="1">
             <mxGeometry height="120" width="240" x="1180" y="520" as="geometry" />
           </mxCell>
         </object>
         <object placeholders="1" c4Name="Backend" c4Type="ContainerScopeBoundary" c4Application="Container" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="mSckvEOlKbgsmZrUJaFw-0">
           <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
-            <mxGeometry height="690" width="550" x="130" y="360" as="geometry" />
+            <mxGeometry height="850" width="720" x="170" y="355" as="geometry" />
           </mxCell>
         </object>
         <object placeholders="1" c4Name="API" c4Type="Component" c4Technology="e.g. FastAPI" c4Description="API to create a report/meeting" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="mSckvEOlKbgsmZrUJaFw-1">
@@ -214,9 +230,6 @@
             <mxGeometry height="120" width="240" x="300" y="890" as="geometry" />
           </mxCell>
         </object>
-        <mxCell id="N0m-24ottXDyjDH9FDrg-5" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="mSckvEOlKbgsmZrUJaFw-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-3">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <object placeholders="1" c4Name="Identification Agent" c4Type="Component" c4Technology="e.g. LangGraph" c4Description="Agent that identifies the speakers" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="N0m-24ottXDyjDH9FDrg-8">
           <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
             <mxGeometry height="120" width="240" x="300" y="545" as="geometry" />
@@ -231,9 +244,6 @@
         <mxCell id="N0m-24ottXDyjDH9FDrg-12" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="N0m-24ottXDyjDH9FDrg-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="N0m-24ottXDyjDH9FDrg-14" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="mSckvEOlKbgsmZrUJaFw-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-10">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="N0m-24ottXDyjDH9FDrg-15" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="N0m-24ottXDyjDH9FDrg-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -246,6 +256,47 @@
           </mxCell>
         </object>
         <mxCell id="s5Hew9XLLm001TAdynq5-1" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="N0m-24ottXDyjDH9FDrg-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="s5Hew9XLLm001TAdynq5-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fYq5TsEkGfr2A4wNTeEZ-0" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="s5Hew9XLLm001TAdynq5-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Amalia" c4Type="LLM" c4Description="LLM for writing in portuguese" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fYq5TsEkGfr2A4wNTeEZ-1">
+          <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry height="120" width="240" x="1040" y="890" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="fYq5TsEkGfr2A4wNTeEZ-2" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="N0m-24ottXDyjDH9FDrg-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="fYq5TsEkGfr2A4wNTeEZ-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <object placeholders="1" c4Name="Applying Agent" c4Type="Component" c4Technology="e.g. LangGraph" c4Description="Agent that will write to the docx file." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fYq5TsEkGfr2A4wNTeEZ-3">
+          <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry height="120" width="240" x="300" y="1050" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="fYq5TsEkGfr2A4wNTeEZ-4" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="N0m-24ottXDyjDH9FDrg-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="fYq5TsEkGfr2A4wNTeEZ-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fYq5TsEkGfr2A4wNTeEZ-5" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="fYq5TsEkGfr2A4wNTeEZ-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1390" y="1110" />
+              <mxPoint x="1390" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object placeholders="1" c4Name="Audio - Text pipeline" c4Type="Component" c4Technology="e.g. Python" c4Description="Component that will transform audio into transcripts" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="fYq5TsEkGfr2A4wNTeEZ-6">
+          <mxCell parent="F7jvhw_SctpLAFtMkDdi-1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1">
+            <mxGeometry height="120" width="240" x="620" y="390" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="fYq5TsEkGfr2A4wNTeEZ-7" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="mSckvEOlKbgsmZrUJaFw-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="fYq5TsEkGfr2A4wNTeEZ-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fYq5TsEkGfr2A4wNTeEZ-8" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="fYq5TsEkGfr2A4wNTeEZ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fYq5TsEkGfr2A4wNTeEZ-9" edge="1" parent="F7jvhw_SctpLAFtMkDdi-1" source="fYq5TsEkGfr2A4wNTeEZ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="F7jvhw_SctpLAFtMkDdi-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
