@@ -203,6 +203,9 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Project temporary files
+backend/temp/
+
 # Ruff stuff:
 .ruff_cache/
 
@@ -219,4 +222,5 @@ __marimo__/
 
 #sqlite database files
 *.db
+
 
