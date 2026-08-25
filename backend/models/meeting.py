@@ -15,3 +15,21 @@ class Meeting(Base):
     description: Mapped[str] = mapped_column(String, nullable=False)
     date: Mapped[date_type] = mapped_column(Date, nullable=False)
     num_of_participants: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    def get_id(self) -> int:
+        return self.id
+    
+    def get_title(self) -> str:
+        return self.title
+    
+    def get_creator(self) -> str:
+        return self.creator
+    
+    def get_description(self) -> str:
+        return self.description
+    
+    def get_date(self) -> date_type:
+        return self.date
+    
+    def get_num_of_participants(self) -> int:   
+        return self.num_of_participants

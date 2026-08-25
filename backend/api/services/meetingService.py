@@ -1,6 +1,6 @@
 #todo fazer serviços
 from api.requests.createMeetingRequest import createMeetingRequest
-from backend.models.meeting import Meeting
+from models.meeting import Meeting
 
 class MeetingService:
     def __init__(self):
@@ -15,4 +15,4 @@ class MeetingService:
             num_of_participants=meeting_request.num_of_participants
         )
         #todo: save new_meeting to the repository
-        return {"message": "Meeting created successfully", "meeting": meeting_request}
+        return new_meeting
