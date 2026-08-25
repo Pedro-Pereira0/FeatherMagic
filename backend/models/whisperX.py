@@ -21,7 +21,7 @@ class WhisperX:
         model = whisperx.load_model(self.model_name, self.device, compute_type = self.compute_type, download_root = self.MODEL_PATH)
 
         audio = whisperx.load_audio(audio_file_path)
-        result = model.transcribe(audio, batch_size=self.batch_size)
+        result = model.transcribe(audio, batch_size=self.batch_size, language=self.language)
 
         #Remove the model from memory to free up GPU resources
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del model
@@ -35,15 +35,13 @@ class WhisperX:
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del model_a
         return result_aligned
 
-    def diarization(self, audio, result_aligned):
+    def diarization(self, audio, result_aligned, num_speakers, min_speakers, max_speakers):
         diarize_model = DiarizationPipeline(token=os.getenv("HUGGING_FACE_TOKEN"), device=self.device)
 
         # diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
-        diarize_segments = diarize_model(audio, num_speakers = 3)
+        diarize_segments = diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
 
         result_diarized = whisperx.assign_word_speakers(diarize_segments, result_aligned)
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del diarize_model
-
-        print(result_diarized["segments"])
 
         return result_diarized

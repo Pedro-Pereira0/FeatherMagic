@@ -5,14 +5,17 @@ from repositories.meeting_repository import MeetingRepository
 from models.meeting import Meeting
 from models.whisperX import WhisperX
 import shutil
+from pathlib import Path
+
 AUDIO_STORAGE_PATH = "backend/temp/audios"
+OUTPUT_STORAGE_PATH = "backend/temp/outputs"
 
 meeting_repo = MeetingRepository()
 #inesc-id/WhisperLv3-EP-X - X
 #inesc-id/WhisperLv3-X-PT-All - X
 #
 
-my_whisperx = WhisperX(model_name = "large-v3")
+my_whisperx = WhisperX(model_name = "inesc-id/WhisperLv3-EP-X", batch_size = 4, language="pt")
 class MeetingService:
 
     def create_meeting(self, meeting_request: createMeetingRequest):
@@ -35,9 +38,40 @@ class MeetingService:
         # 1. Transcribe each audio using WhisperX
         # 2. Align the transcription with the audio
         # 3. Diarization of the audio, to identify speakers and their respective segments
-        # 4. Save the transcription to the database
+        # 4. Save the transcription
 
         audio, result = my_whisperx.transcribe(audio_file_path)
         result_aligned = my_whisperx.align(audio, result)
-        result_diarized = my_whisperx.diarization(audio, result_aligned)
+        result_diarized = my_whisperx.diarization(audio, result_aligned, 3, 2, 3)
+        print(result_diarized["segments"])
+        self.output_text(result_diarized)
+
         pass
+
+    def output_text(self, results):
+        output_directory = Path(OUTPUT_STORAGE_PATH)
+        output_directory.mkdir(parents=True, exist_ok=True)
+
+        output_file_path = output_directory / "output.txt"
+        readable_segments = []
+        for segment in results.get("segments", []):
+            start = segment.get("start", 0)
+            end = segment.get("end", 0)
+            speaker = segment.get("speaker", "UNKNOWN")
+            text = segment.get("text", "").strip()
+
+            readable_segments.append(
+                f"[{self._format_timestamp(start)} - {self._format_timestamp(end)}] "
+                f"{speaker}: {text}"
+            )
+
+        output_file_path.write_text("\n\n".join(readable_segments), encoding="utf-8")
+
+        return str(output_file_path)
+
+    @staticmethod
+    def _format_timestamp(seconds):
+        total_seconds = int(float(seconds))
+        minutes, seconds = divmod(total_seconds, 60)
+        hours, minutes = divmod(minutes, 60)
+        return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
