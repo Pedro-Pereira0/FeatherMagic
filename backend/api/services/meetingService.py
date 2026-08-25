@@ -1,6 +1,9 @@
 #todo fazer serviços
 from api.requests.createMeetingRequest import createMeetingRequest
+from repositories.meeting_repository import MeetingRepository
 from models.meeting import Meeting
+
+meeting_repo = MeetingRepository()
 
 class MeetingService:
     def __init__(self):
@@ -14,5 +17,6 @@ class MeetingService:
             date=meeting_request.date,
             num_of_participants=meeting_request.num_of_participants
         )
-        #todo: save new_meeting to the repository
+
+        new_meeting = meeting_repo.create(new_meeting)
         return new_meeting
