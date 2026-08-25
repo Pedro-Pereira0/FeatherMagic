@@ -6,5 +6,4 @@ class createMeetingRequest(BaseModel):
     creator: str
     description: str
     date: date
-    duration: time
     num_of_participants: int

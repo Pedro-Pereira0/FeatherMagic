@@ -14,5 +14,4 @@ class Meeting(Base):
     creator: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=False)
     date: Mapped[date_type] = mapped_column(Date, nullable=False)
-    duration: Mapped[time_type] = mapped_column(Time, nullable=False)
     num_of_participants: Mapped[int] = mapped_column(Integer, nullable=False)
