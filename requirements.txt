@@ -5,3 +5,4 @@ uvicorn
 langgraph
 sqlalchemy
 python-multipart
+python-dotenv
