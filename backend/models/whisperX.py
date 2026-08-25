@@ -38,6 +38,10 @@ class WhisperX:
     def diarization(self, audio, result_aligned, num_speakers, min_speakers, max_speakers):
         diarize_model = DiarizationPipeline(token=os.getenv("HUGGING_FACE_TOKEN"), device=self.device)
 
+        #defining parameters for the diarization model, so the model correctly assigns speakers.
+        diarize_model.model.instantiate({
+            "clustering": {"threshold": 0.7}
+        })
         # diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
         diarize_segments = diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
 
