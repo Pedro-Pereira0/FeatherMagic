@@ -13,7 +13,11 @@ class MeetingRepository(RepositoryInterface):
 
             return new_meeting
         
-
+    def get_by_id(self, meeting_id: int):
+        with Session(engine) as session:
+            meeting = session.query(Meeting).filter(Meeting.id == meeting_id).first()
+            return meeting
+    
     def search(self, query):
         # Implement search logic based on the query
         pass

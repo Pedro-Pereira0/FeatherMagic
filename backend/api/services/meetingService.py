@@ -10,11 +10,11 @@ from utils.utils import Utils
 AUDIO_STORAGE_PATH = "backend/temp/audios"
 
 meeting_repo = MeetingRepository()
-#inesc-id/WhisperLv3-EP-X - X
-#inesc-id/WhisperLv3-X-PT-All - X
+#inesc-id/WhisperLv3-EP-X
+#inesc-id/WhisperLv3-X-PT-All
 #
 
-my_whisperx = WhisperX(model_name = "inesc-id/WhisperLv3-EP-X - X", batch_size = 4, language = "pt")
+my_whisperx = WhisperX(model_name = "inesc-id/WhisperLv3-EP-X", batch_size = 4, language = "pt")
 class MeetingService:
 
     def create_meeting(self, meeting_request: createMeetingRequest):
@@ -32,15 +32,12 @@ class MeetingService:
     def upload_audio(self, meeting_id: int, audio_file : UploadFile):
         shutil.copyfileobj(audio_file.file, open(f"{AUDIO_STORAGE_PATH}/meeting_{meeting_id}.mp3", "wb"))
         audio_file_path = f"{AUDIO_STORAGE_PATH}/meeting_{meeting_id}.mp3"
-        #Implement pipeline of audio ingestion and transcription, and then save the transcription to the database
-        # 1. Transcribe each audio using WhisperX
-        # 2. Align the transcription with the audio
-        # 3. Diarization of the audio, to identify speakers and their respective segments
-        # 4. Save the transcription
+
+        meeting = meeting_repo.get_by_id(meeting_id)
 
         audio, result = my_whisperx.transcribe(audio_file_path)
         result_aligned = my_whisperx.align(audio, result)
-        result_diarized = my_whisperx.diarization(audio,result_aligned, 3)
+        result_diarized = my_whisperx.diarization(audio,result_aligned, meeting.get_num_of_participants())
 
         Utils.output_text(result_diarized)
 
