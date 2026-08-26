@@ -1,6 +1,7 @@
 import whisperx
 from whisperx.diarize import DiarizationPipeline
 import os
+from utils.utils import Utils
 
 class WhisperX:
     device: str
@@ -10,7 +11,7 @@ class WhisperX:
     language: str
     MODEL_PATH = "backend/temp/models/"
 
-    def __init__(self, device = "cuda", batch_size: int = 16, compute_type: str = "float16", model_name: str = "inesc-id/WhisperLv3-X-PT-All", language: str = "pt"):
+    def __init__(self, device = "cuda", batch_size: int = 16, compute_type: str = "float16", model_name: str = "large-v3", language: str = "pt"):
         self.device = device
         self.batch_size = batch_size
         self.compute_type = compute_type
@@ -35,15 +36,11 @@ class WhisperX:
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del model_a
         return result_aligned
 
-    def diarization(self, audio, result_aligned, num_speakers, min_speakers, max_speakers):
-        diarize_model = DiarizationPipeline(token=os.getenv("HUGGING_FACE_TOKEN"), device=self.device)
-
-        #defining parameters for the diarization model, so the model correctly assigns speakers.
-        diarize_model.model.instantiate({
-            "clustering": {"threshold": 0.7}
-        })
+    def diarization(self, audio, result_aligned, num_speakers):
+        diarize_model = DiarizationPipeline(model_name = "pyannote/speaker-diarization-community-1", token=os.getenv("HUGGING_FACE_TOKEN"), device=self.device)
+        
         # diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
-        diarize_segments = diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
+        diarize_segments = diarize_model(audio, num_speakers=num_speakers)
 
         result_diarized = whisperx.assign_word_speakers(diarize_segments, result_aligned)
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del diarize_model
