@@ -26,6 +26,7 @@ class WhisperX:
 
         #Remove the model from memory to free up GPU resources
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del model
+        
         return audio, result
 
     def align(self, audio, result) -> str:
@@ -34,6 +35,7 @@ class WhisperX:
 
         #Remove the model from memory to free up GPU resources
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del model_a
+
         return result_aligned
 
     def diarization(self, audio, result_aligned, num_speakers):

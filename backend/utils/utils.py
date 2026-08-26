@@ -30,4 +30,5 @@ class Utils:
         total_seconds = int(float(seconds))
         minutes, seconds = divmod(total_seconds, 60)
         hours, minutes = divmod(minutes, 60)
+        
         return f"{hours:02d}:{minutes:02d}:{seconds:02d}"

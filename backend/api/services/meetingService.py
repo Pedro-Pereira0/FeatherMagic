@@ -27,6 +27,7 @@ class MeetingService:
         )
 
         new_meeting = meeting_repo.create(new_meeting)
+        
         return new_meeting
 
     def upload_audio(self, meeting_id: int, audio_file : UploadFile):
