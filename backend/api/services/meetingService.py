@@ -27,7 +27,7 @@ class MeetingService:
         )
 
         new_meeting = meeting_repo.create(new_meeting)
-        
+
         return new_meeting
 
     def upload_audio(self, meeting_id: int, audio_file : UploadFile):
@@ -42,4 +42,7 @@ class MeetingService:
 
         Utils.output_text(result_diarized)
 
-        pass
+        #Error!! : different types, try to serialize as json
+        meeting.set_transcription(result_diarized["segments"])
+
+        return meeting_repo.update(meeting)

@@ -30,20 +30,21 @@ class WhisperX:
         return audio, result
 
     def align(self, audio, result) -> str:
-        model_a, metadata = whisperx.load_align_model(language_code=result["language"], device=self.device)
-        result_aligned = whisperx.align(result["segments"], model_a, metadata, audio, self.device, return_char_alignments=False)
+        align_model, metadata = whisperx.load_align_model(language_code=result["language"], device=self.device)
+        result_aligned = whisperx.align(result["segments"], align_model, metadata, audio, self.device, return_char_alignments=False)
 
         #Remove the model from memory to free up GPU resources
-        import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del model_a
+        import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del align_model
 
         return result_aligned
 
     def diarization(self, audio, result_aligned, num_speakers):
-        diarize_model = DiarizationPipeline(model_name = "pyannote/speaker-diarization-community-1", token=os.getenv("HUGGING_FACE_TOKEN"), device=self.device)
+        diarize_model = DiarizationPipeline(model_name = "pyannote/speaker-diarization-community-1", token = os.getenv("HUGGING_FACE_TOKEN"), device = self.device)
         
-        diarize_segments = diarize_model(audio, num_speakers=num_speakers)
+        diarize_segments = diarize_model(audio, num_speakers = num_speakers)
 
         result_diarized = whisperx.assign_word_speakers(diarize_segments, result_aligned)
+
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del diarize_model
 
         return result_diarized

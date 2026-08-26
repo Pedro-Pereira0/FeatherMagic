@@ -16,6 +16,8 @@ class Meeting(Base):
     date: Mapped[date_type] = mapped_column(Date, nullable=False)
     num_of_participants: Mapped[int] = mapped_column(Integer, nullable=False)
 
+    transcription: Mapped[str] = mapped_column(String, nullable = True)
+
     def get_id(self) -> int:
         return self.id
     
@@ -33,3 +35,10 @@ class Meeting(Base):
     
     def get_num_of_participants(self) -> int:   
         return self.num_of_participants
+
+    def get_transcription(self) -> str:
+        return self.transcription
+
+    def set_transcription(self, transcription: str):
+        self.transcription = transcription
+        

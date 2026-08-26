@@ -13,5 +13,5 @@ async def create_meeting(meeting_request: createMeetingRequest):
 
 @meeting_router.put("/meeting/{meeting_id}/audio")
 async def upload_audio(meeting_id: int, audio_file: UploadFile = File(...)):
-    meeting_service.upload_audio(meeting_id, audio_file)
-    return {"message": f"Audio file uploaded for meeting {meeting_id}"}
+    updated_meeting = meeting_service.upload_audio(meeting_id, audio_file)
+    return {"message": f"Audio file uploaded for meeting {meeting_id}:", "meeting": MeetingView.model_validate(updated_meeting)}

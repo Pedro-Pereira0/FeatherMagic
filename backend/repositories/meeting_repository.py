@@ -12,6 +12,14 @@ class MeetingRepository(RepositoryInterface):
             session.refresh(new_meeting)
 
             return new_meeting
+
+    def update(self, meeting : Meeting):
+        with Session(engine) as session:
+            merged_meeting = session.merge(meeting)
+            session.commit()
+            session.refresh(merged_meeting)
+
+            return merged_meeting
         
     def get_by_id(self, meeting_id: int):
         with Session(engine) as session:
