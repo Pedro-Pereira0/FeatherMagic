@@ -1,7 +1,8 @@
 import whisperx
-from whisperx.diarize import DiarizationPipeline
+from whisperx.diarize import DiarizationPipeline, Pipeline
 import os
 from utils.utils import Utils
+
 
 class WhisperX:
     device: str
@@ -41,6 +42,7 @@ class WhisperX:
         
         # diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
         diarize_segments = diarize_model(audio, num_speakers=num_speakers)
+
 
         result_diarized = whisperx.assign_word_speakers(diarize_segments, result_aligned)
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del diarize_model

@@ -14,7 +14,7 @@ meeting_repo = MeetingRepository()
 #inesc-id/WhisperLv3-X-PT-All - X
 #
 
-my_whisperx = WhisperX(model_name = "large-v3", batch_size = 4, language = "pt")
+my_whisperx = WhisperX(model_name = "inesc-id/WhisperLv3-EP-X - X", batch_size = 4, language = "pt")
 class MeetingService:
 
     def create_meeting(self, meeting_request: createMeetingRequest):
@@ -40,7 +40,7 @@ class MeetingService:
 
         audio, result = my_whisperx.transcribe(audio_file_path)
         result_aligned = my_whisperx.align(audio, result)
-        result_diarized = my_whisperx.diarization(audio, result_aligned, 3)
+        result_diarized = my_whisperx.diarization(audio,result_aligned, 3)
 
         Utils.output_text(result_diarized)
 
