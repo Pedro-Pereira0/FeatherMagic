@@ -3,7 +3,6 @@ from whisperx.diarize import DiarizationPipeline, Pipeline
 import os
 from utils.utils import Utils
 
-
 class WhisperX:
     device: str
     batch_size: int
@@ -40,9 +39,7 @@ class WhisperX:
     def diarization(self, audio, result_aligned, num_speakers):
         diarize_model = DiarizationPipeline(model_name = "pyannote/speaker-diarization-community-1", token=os.getenv("HUGGING_FACE_TOKEN"), device=self.device)
         
-        # diarize_model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
         diarize_segments = diarize_model(audio, num_speakers=num_speakers)
-
 
         result_diarized = whisperx.assign_word_speakers(diarize_segments, result_aligned)
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del diarize_model
