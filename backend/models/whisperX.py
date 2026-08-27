@@ -22,7 +22,7 @@ class WhisperX:
         model = whisperx.load_model(self.model_name, self.device, compute_type = self.compute_type, download_root = self.MODEL_PATH)
 
         audio = whisperx.load_audio(audio_file_path)
-        result = model.transcribe(audio, batch_size=self.batch_size, language=self.language)
+        result = model.transcribe(audio, batch_size=self.batch_size)
 
         #Remove the model from memory to free up GPU resources
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del model

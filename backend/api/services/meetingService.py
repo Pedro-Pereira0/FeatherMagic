@@ -13,7 +13,7 @@ meeting_repo = MeetingRepository()
 #inesc-id/WhisperLv3-EP-X
 #inesc-id/WhisperLv3-X-PT-All
 
-my_whisperx = WhisperX(batch_size = 4, language = "pt")
+my_whisperx = WhisperX(batch_size = 4)
 class MeetingService:
 
     def create_meeting(self, meeting_request: createMeetingRequest):
