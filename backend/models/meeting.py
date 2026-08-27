@@ -1,6 +1,6 @@
 from datetime import date as date_type, time as time_type
 
-from sqlalchemy import Date, Integer, String, Time
+from sqlalchemy import JSON, Date, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .base import Base
@@ -16,7 +16,7 @@ class Meeting(Base):
     date: Mapped[date_type] = mapped_column(Date, nullable=False)
     num_of_participants: Mapped[int] = mapped_column(Integer, nullable=False)
 
-    transcription: Mapped[str] = mapped_column(String, nullable = True)
+    transcription: Mapped[list] = mapped_column(JSON, nullable = True)
 
     def get_id(self) -> int:
         return self.id
@@ -36,9 +36,9 @@ class Meeting(Base):
     def get_num_of_participants(self) -> int:   
         return self.num_of_participants
 
-    def get_transcription(self) -> str:
+    def get_transcription(self):
         return self.transcription
 
-    def set_transcription(self, transcription: str):
+    def set_transcription(self, transcription):
         self.transcription = transcription
         

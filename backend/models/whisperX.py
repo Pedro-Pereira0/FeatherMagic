@@ -43,7 +43,7 @@ class WhisperX:
         
         diarize_segments = diarize_model(audio, num_speakers = num_speakers)
 
-        result_diarized = whisperx.assign_word_speakers(diarize_segments, result_aligned)
+        result_diarized = whisperx.assign_word_speakers(diarize_segments, result_aligned, fill_nearest=True)
 
         import gc; import torch; gc.collect(); torch.cuda.empty_cache(); del diarize_model
 

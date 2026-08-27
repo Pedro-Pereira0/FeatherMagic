@@ -1,4 +1,3 @@
-#todo fazer serviços
 from fastapi import UploadFile
 from api.requests.createMeetingRequest import createMeetingRequest
 from repositories.meeting_repository import MeetingRepository
@@ -6,13 +5,13 @@ from models.meeting import Meeting
 from models.whisperX import WhisperX
 import shutil
 from utils.utils import Utils
+import json
 
 AUDIO_STORAGE_PATH = "backend/temp/audios"
 
 meeting_repo = MeetingRepository()
 #inesc-id/WhisperLv3-EP-X
 #inesc-id/WhisperLv3-X-PT-All
-#
 
 my_whisperx = WhisperX(batch_size = 4, language = "pt")
 class MeetingService:
@@ -42,7 +41,8 @@ class MeetingService:
 
         Utils.output_text(result_diarized)
 
-        #Error!! : different types, try to serialize as json
-        meeting.set_transcription(result_diarized["segments"])
+        meeting.set_transcription(json.loads(json.dumps(result_diarized["segments"], default = "str")))
 
+        print(meeting.get_transcription())
+        
         return meeting_repo.update(meeting)
