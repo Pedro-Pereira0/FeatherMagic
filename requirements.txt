@@ -6,3 +6,4 @@ langgraph
 sqlalchemy
 python-multipart
 python-dotenv
+langgraph-checkpoint-sqlite
