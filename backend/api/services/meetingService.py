@@ -2,7 +2,7 @@ from fastapi import UploadFile
 from api.requests.createMeetingRequest import createMeetingRequest
 from repositories.meeting_repository import MeetingRepository
 from models.meeting import Meeting
-from models.whisperX import WhisperX
+from core.whisperX import WhisperX
 import shutil
 from utils.utils import Utils
 import json

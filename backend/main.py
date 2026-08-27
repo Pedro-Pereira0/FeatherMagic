@@ -13,5 +13,6 @@ app.include_router(meeting_router)
 
 if __name__ == "__main__":
     import uvicorn
+    from core._amalia import writer_model
     Base.metadata.create_all(engine)
     uvicorn.run(app, host="localhost", port=8000)
