@@ -1,7 +1,6 @@
 import whisperx
-from whisperx.diarize import DiarizationPipeline, Pipeline
+from whisperx.diarize import DiarizationPipeline
 import os
-from utils.utils import Utils
 
 class WhisperX:
     device: str
