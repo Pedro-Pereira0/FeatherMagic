@@ -4,7 +4,7 @@ from langchain_core.messages import BaseMessage
 
 class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
-    transcription: str #Type might be wrong JSON?
+    transcription: list[dict] #List[dict]
     context: list[dict] #[time_start, time_end - Theme] [str, str]
     relevant_dialogues: list[dict] #[theme - list[speaker, dialogue]] [str, list[dict]]
     draft: list[dict] #[type of text - text] [str, str]

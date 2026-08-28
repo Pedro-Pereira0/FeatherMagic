@@ -39,7 +39,7 @@ class MeetingService:
         result_aligned = my_whisperx.align(audio, result)
         result_diarized = my_whisperx.diarization(audio,result_aligned, meeting.get_num_of_participants())
 
-        Utils.output_text(result_diarized)
+        Utils.output_text(result_diarized)        
 
         meeting.set_transcription(json.loads(json.dumps(result_diarized["segments"], default = "str")))
         

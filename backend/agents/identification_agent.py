@@ -1,5 +1,8 @@
 from agents.base_agent import BaseAgent
 from agents.agent_state import AgentState
+from backend.models.segment import Segment
+import json
+
 class IdentificationAgent(BaseAgent):
     speakers: list[dict] #a list of [str, str] ex: ["SPEAKER_00", "Jonh"]
 
@@ -10,8 +13,9 @@ class IdentificationAgent(BaseAgent):
         2. extract the speakers, 
         3. interrupt the graph and ask the user who the speaker is, with an excert of audio (if possible)
         '''
+        transcript = Segment.transcript_to_segments(agent_state.get("transcript"))
         
-        pass
+
 
     def output_node(agent_state: AgentState):
         '''
