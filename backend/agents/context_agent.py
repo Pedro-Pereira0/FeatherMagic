@@ -5,7 +5,7 @@ class ContextAgent(BaseAgent):
     def __init__():
         pass
 
-    def reasoning_node(agent_state):
+    def reasoning_node(self, agent_state):
         '''
         The context agent will read the script and define the main themes in discussion during the meeting.
         It will use the timestamps of the text to deterimine the timestamp of the theme. It will also extract the most relevant
@@ -13,5 +13,5 @@ class ContextAgent(BaseAgent):
         '''
         pass
 
-    def output_node(agent_state):
+    def output_node(self, agent_state):
         pass

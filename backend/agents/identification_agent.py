@@ -3,22 +3,21 @@ from agents.agent_state import AgentState
 from models.segment import Segment
 
 class IdentificationAgent(BaseAgent):
-    speakers: list[dict] #a list of [str, str] ex: ["SPEAKER_00", "Jonh"]
-
     def reasoning_node(self, agent_state: AgentState):
         '''
-        The identifcation reasoning node will: 
-        1. receive the transcript, 
-        2. extract the speakers, 
-        3. interrupt the graph and ask the user who the speaker is, with an excert of audio (if possible)
+        Iterates through each segment of the transcript. It will extract one excert per speaker.
+        Each excerpt has start_time, end_time, text, and speaker.
         '''
+        
         speakers = []
+        segments_to_inquire = []
         transcript = Segment.transcript_to_segments(agent_state.get("transcription"))
         for segment in transcript:
             if segment.speaker not in speakers:
                 speakers.append(segment.speaker)
+                segments_to_inquire.append(segment)
 
-        print(speakers)
+        
 
 
     def output_node(self, agent_state: AgentState):
