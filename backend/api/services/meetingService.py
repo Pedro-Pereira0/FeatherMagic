@@ -5,6 +5,8 @@ from models.meeting import Meeting
 from core.whisperX import WhisperX
 import shutil
 from utils.utils import Utils
+from models.segment import Segment
+from agents.state_graph import AgentWorkflow
 import json
 
 AUDIO_STORAGE_PATH = "backend/temp/audios"
@@ -44,3 +46,28 @@ class MeetingService:
         meeting.set_transcription(json.loads(json.dumps(result_diarized["segments"], default = "str")))
         
         return meeting_repo.update(meeting)
+
+    def start_report_writing(self, meeting_id: int):
+        meeting = meeting_repo.get_by_id(meeting_id)
+        if meeting.get_transcription() == None:
+            print("No transcription") #Exception
+            return
+
+        print("Start the writing of the report")
+
+        initial_state = {
+            "messages": [],
+            "transcription": meeting.get_transcription(),
+            "context": [], 
+            "relevant_dialogues": [],
+            "draft": [], 
+            "iteration": 0, 
+        }
+
+        graph = AgentWorkflow().build_graph()
+        graph.invoke(initial_state)
+        
+        return 
+
+    def continue_report_writing(self, meeting_id: int, thread_id: str):
+        pass

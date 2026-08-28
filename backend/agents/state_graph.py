@@ -10,8 +10,17 @@ from agents.appliance_agent import ApplianceAgent
 
 class AgentWorkflow:
 
-    def build_graph(db_path: str = "checkpoints.sqlite"):
+    def __init__(self):
+        self.id_agent = IdentificationAgent()
+
+    def build_graph(self, db_path: str = "checkpoints.sqlite"):
         builder = StateGraph(AgentState)
 
-        checkpointer = SqliteSaver.from_conn_string(db_path)
-        return builder.compile(checkpointer = checkpointer)
+        builder.add_node("id_reasoning", self.id_agent.reasoning_node)
+
+        builder.add_edge(START, "id_reasoning")
+        builder.add_edge("id_reasoning", END)
+
+        #checkpointer = SqliteSaver.from_conn_string(db_path)
+        #return builder.compile(checkpointer = checkpointer)
+        return builder.compile()
