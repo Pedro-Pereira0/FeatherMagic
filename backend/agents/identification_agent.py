@@ -10,6 +10,7 @@ class IdentificationAgent(BaseAgent):
         2. extract the speakers, 
         3. interrupt the graph and ask the user who the speaker is, with an excert of audio (if possible)
         '''
+        
         pass
 
     def output_node(agent_state: AgentState):

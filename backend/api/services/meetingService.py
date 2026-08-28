@@ -42,7 +42,5 @@ class MeetingService:
         Utils.output_text(result_diarized)
 
         meeting.set_transcription(json.loads(json.dumps(result_diarized["segments"], default = "str")))
-
-        print(meeting.get_transcription())
         
         return meeting_repo.update(meeting)
