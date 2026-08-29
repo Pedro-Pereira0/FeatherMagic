@@ -1,5 +1,6 @@
 from fastapi import UploadFile
-from api.requests.createMeetingRequest import createMeetingRequest
+from langgraph.types import Command
+from api.requests.create_meeting_request import createMeetingRequest
 from repositories.meeting_repository import MeetingRepository
 from models.meeting import Meeting
 from core.whisperX import WhisperX
@@ -50,7 +51,10 @@ class MeetingService:
 
     def start_report_writing(self, meeting_id: int):
         meeting = meeting_repo.get_by_id(meeting_id)
-        if meeting.get_transcription() == None:
+        if meeting is None:
+            print("Meeting not found")
+            return
+        if meeting.get_transcription() is None:
             print("No transcription") #Exception
             return
 
@@ -66,17 +70,38 @@ class MeetingService:
             "segments_to_inquire" : [],
             "speaker_names" : {} 
         }
+        thread_id = meeting.get_title() + "_" + str(meeting.get_id())
 
-        config = {"configurable": {"thread_id": meeting.get_title() + "_" + str(meeting.get_id())}}
+        meeting.set_thread_id(thread_id)
+        meeting_repo.update(meeting)
+        
+        config = {"configurable": {"thread_id": thread_id}}
         with SqliteSaver.from_conn_string("checkpoint.db") as checkpointer:
             graph = AgentWorkflow().build_graph(checkpointer)
-            results = graph.invoke(initial_state, config = config)
-            if results.get("__interrupt__"):
-                interrupt_obj = results["__interrupt__"][0]
-                payload = interrupt_obj.value
-                print(payload)
+            result = graph.invoke(initial_state, config = config)
 
-        return 
+        return result
 
-    def continue_report_writing(self, meeting_id: int, thread_id: str):
-        pass
+    def continue_report_writing(self, meeting_id: int, user_input: str):
+        meeting = meeting_repo.get_by_id(meeting_id)
+        if meeting is None:
+            print("Meeting not found")
+            return
+        if meeting.get_transcription() is None:
+            print("No transcription") #Exception
+            return
+        elif meeting.get_thread_id() is None:
+            print("No report generation started")
+            return
+
+        config = {"configurable": {"thread_id": meeting.get_thread_id()}}
+        
+        with SqliteSaver.from_conn_string("checkpoint.db") as checkpointer:
+            graph = AgentWorkflow().build_graph(checkpointer)
+            result = graph.invoke(Command(resume=user_input), config = config)
+
+        return result
+        
+        
+
+        

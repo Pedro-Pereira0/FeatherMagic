@@ -30,6 +30,7 @@ class IdentificationAgent(BaseAgent):
         The output_node will alter the transcript and put the correct speaker name into the transcript.
         '''
         print("We now know the speakers names!")
+        print(agent_state.get("speaker_names"))
 
         return
 

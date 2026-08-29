@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.routers.meetingRouter import meeting_router
+from api.routers.meeting_router import meeting_router
 from models.base import Base
 from models.meeting import Meeting
 from models.user import User

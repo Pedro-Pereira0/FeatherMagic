@@ -1,4 +1,6 @@
 from pathlib import Path
+from pydub import AudioSegment
+import io
 
 OUTPUT_STORAGE_PATH = "backend/temp/outputs"
 
@@ -32,3 +34,12 @@ class Utils:
         hours, minutes = divmod(minutes, 60)
         
         return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+    @staticmethod
+    def extract_dialogue(path:str, start:float, end:float):
+        audio = AudioSegment.from_file(path)
+        clip = audio[int(start * 1000):int(end * 1000)]
+        
+        buffer = io.BytesIO()
+        clip.export(buffer, format="wav")
+        return buffer.getvalue()
