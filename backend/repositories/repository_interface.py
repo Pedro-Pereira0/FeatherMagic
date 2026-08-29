@@ -5,5 +5,10 @@ class RepositoryInterface(ABC):
     def create(self, data):
         pass
 
-    def search(self, query):
+    @abstractmethod
+    def update(self, data):
+        pass
+    
+    @abstractmethod
+    def get_by_id(self, id):
         pass
