@@ -37,14 +37,18 @@ class IdentificationAgent(BaseAgent):
     def inquire_user(self, agent_state: AgentState):
         segments_to_inquire = agent_state.get("segments_to_inquire")
         speaker_names = agent_state.get("speaker_names")
-        if len(segments_to_inquire) != 0:
-            segment = segments_to_inquire.pop()
+
+        if segments_to_inquire:
+            segment = segments_to_inquire[-1]
+
             speaker_name = interrupt({
                 "speaker": segment.speaker,
                 "text": segment.text,
                 "start": segment.start,
                 "end": segment.end,
-            })       
+            })
+
+            segments_to_inquire.pop()
             speaker_names[segment.speaker] = speaker_name
 
         return{

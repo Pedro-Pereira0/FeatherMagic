@@ -13,7 +13,7 @@ class AgentWorkflow:
         self.id_agent = IdentificationAgent()
 
     def identification_condition(self, agent_state: AgentState):
-        if len(agent_state.get("segments_to_inquire"))!= 0:
+        if agent_state.get("segments_to_inquire"):
             return "id_inquiring"
         else:
             return "id_output"
