@@ -7,6 +7,7 @@ import shutil
 from utils.utils import Utils
 from models.segment import Segment
 from agents.state_graph import AgentWorkflow
+from langgraph.checkpoint.sqlite import SqliteSaver
 import json
 
 AUDIO_STORAGE_PATH = "backend/temp/audios"
@@ -61,12 +62,20 @@ class MeetingService:
             "context": [], 
             "relevant_dialogues": [],
             "draft": [], 
-            "iteration": 0, 
+            "iteration": 0,
+            "segments_to_inquire" : [],
+            "speaker_names" : {} 
         }
 
-        graph = AgentWorkflow().build_graph()
-        graph.invoke(initial_state)
-        
+        config = {"configurable": {"thread_id": meeting.get_title() + "_" + str(meeting.get_id())}}
+        with SqliteSaver.from_conn_string("checkpoint.db") as checkpointer:
+            graph = AgentWorkflow().build_graph(checkpointer)
+            results = graph.invoke(initial_state, config = config)
+            if results.get("__interrupt__"):
+                interrupt_obj = results["__interrupt__"][0]
+                payload = interrupt_obj.value
+                print(payload)
+
         return 
 
     def continue_report_writing(self, meeting_id: int, thread_id: str):
