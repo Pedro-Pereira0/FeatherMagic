@@ -14,3 +14,10 @@ class Segment(BaseModel):
             segment_list.append(Segment.model_validate(segment))
 
         return segment_list
+
+    @staticmethod
+    def segments_to_transcript (segments: list["Segment"]):
+        return [
+            segment.model_dump()
+            for segment in segments
+        ]

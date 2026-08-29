@@ -22,17 +22,24 @@ class IdentificationAgent(BaseAgent):
             "segments_to_inquire" : segments_to_inquire
         }
 
-        
-
-
     def output_node(self, agent_state: AgentState):
         '''
         The output_node will alter the transcript and put the correct speaker name into the transcript.
         '''
-        print("We now know the speakers names!")
-        print(agent_state.get("speaker_names"))
+        speakers = agent_state.get("speaker_names")
+        transcript = agent_state.get("transcription")
 
-        return
+        segments = Segment.transcript_to_segments(agent_state.get("transcription"))
+        print(speakers)
+        #Alter the transcript to the correct names
+        for segment in segments:
+            segment.speaker = speakers.get(segment.speaker)
+
+        transcript = Segment.segments_to_transcript(segments)
+        print(transcript)
+        return {
+            "transcription" : transcript
+        }
 
     def inquire_user(self, agent_state: AgentState):
         segments_to_inquire = agent_state.get("segments_to_inquire")
