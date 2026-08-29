@@ -8,7 +8,6 @@ class WhisperX:
     compute_type: str
     model_name: str
     language: str
-    MODEL_PATH = "backend/temp/models/"
 
     def __init__(self, device = "cuda", batch_size: int = 16, compute_type: str = "float16", model_name: str = "large-v3", language: str = "pt"):
         self.device = device
@@ -18,7 +17,7 @@ class WhisperX:
         self.language = language
 
     def transcribe(self, audio_file_path: str):
-        model = whisperx.load_model(self.model_name, self.device, compute_type = self.compute_type, download_root = self.MODEL_PATH)
+        model = whisperx.load_model(self.model_name, self.device, compute_type = self.compute_type, download_root = os.getenv("MODEL_PATH"))
 
         audio = whisperx.load_audio(audio_file_path)
         result = model.transcribe(audio, batch_size=self.batch_size)

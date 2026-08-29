@@ -1,13 +1,12 @@
 from pathlib import Path
 from pydub import AudioSegment
 import io
-
-OUTPUT_STORAGE_PATH = "backend/temp/outputs"
+import os
 
 class Utils:
     @staticmethod
     def output_text(results):
-        output_directory = Path(OUTPUT_STORAGE_PATH)
+        output_directory = Path(os.getenv("OUTPUT_STORAGE_PATH"))
         output_directory.mkdir(parents=True, exist_ok=True)
 
         output_file_path = output_directory / "output.txt"

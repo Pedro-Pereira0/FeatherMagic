@@ -10,8 +10,7 @@ from models.segment import Segment
 from agents.state_graph import AgentWorkflow
 from langgraph.checkpoint.sqlite import SqliteSaver
 import json
-
-AUDIO_STORAGE_PATH = "backend/temp/audios"
+import os
 
 meeting_repo = MeetingRepository()
 #inesc-id/WhisperLv3-EP-X
@@ -34,8 +33,8 @@ class MeetingService:
         return new_meeting
 
     def upload_audio(self, meeting_id: int, audio_file : UploadFile):
-        shutil.copyfileobj(audio_file.file, open(f"{AUDIO_STORAGE_PATH}/meeting_{meeting_id}.mp3", "wb"))
-        audio_file_path = f"{AUDIO_STORAGE_PATH}/meeting_{meeting_id}.mp3"
+        shutil.copyfileobj(audio_file.file, open(f"{os.getenv("AUDIO_STORAGE_PATH")}/meeting_{meeting_id}.mp3", "wb"))
+        audio_file_path = f"{os.getenv("AUDIO_STORAGE_PATH")}/meeting_{meeting_id}.mp3"
 
         meeting = meeting_repo.get_by_id(meeting_id)
 

@@ -2,8 +2,6 @@ from agents.base_agent import BaseAgent
 from agents.agent_state import AgentState
 
 class ContextAgent(BaseAgent):
-    def __init__():
-        pass
 
     def reasoning_node(self, agent_state: AgentState):
         '''

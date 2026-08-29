@@ -6,11 +6,10 @@ from api.views.meeting_view import MeetingView
 from api.views.meeting_update_view import MeetingUpdateView
 from utils.utils import Utils
 import base64
+import os
 
 meeting_router = APIRouter()
 meeting_service = MeetingService()
-
-AUDIO_STORAGE_PATH = "backend/temp/audios"
 
 @meeting_router.put("/meeting/")
 async def create_meeting(meeting_request: createMeetingRequest):
@@ -32,7 +31,7 @@ async def upload_audio(meeting_id: int, audio_file: UploadFile = File(...)):
 async def start_write_report(meeting_id: int):
     #The report may return incomplete. For example, at the stage of speaker identification.
     #Todo: Need to keep in mind.
-    audio_file_path = f"{AUDIO_STORAGE_PATH}/meeting_{meeting_id}.mp3"
+    audio_file_path = f"{os.getenv("AUDIO_STORAGE_PATH")}/meeting_{meeting_id}.mp3"
     result = meeting_service.start_report_writing(meeting_id)
     if result.get("__interrupt__"):
         interrupt_obj = result["__interrupt__"][0]
@@ -58,7 +57,7 @@ async def continue_write_report(meeting_id: int, continueReportGenRequest: conti
     #Todo: Need to keep in mind.
     user_input = continueReportGenRequest.user_input
     print(user_input)
-    audio_file_path = f"{AUDIO_STORAGE_PATH}/meeting_{meeting_id}.mp3"
+    audio_file_path = f"{os.getenv("AUDIO_STORAGE_PATH")}/meeting_{meeting_id}.mp3"
     result = meeting_service.continue_report_writing(meeting_id, user_input)
 
     if result.get("__interrupt__"):
