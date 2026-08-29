@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import date, time
 
-class createMeetingRequest(BaseModel):
+class CreateMeetingRequest(BaseModel):
     title: str
     creator: str
     description: str

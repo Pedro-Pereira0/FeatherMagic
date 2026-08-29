@@ -1,4 +1,4 @@
 from pydantic import BaseModel
 
-class continueReportGenRequest(BaseModel):
+class ContinueReportGenRequest(BaseModel):
     user_input: str

@@ -6,6 +6,13 @@ import os
 class Utils:
     @staticmethod
     def output_text(results):
+        '''
+        Args: results of the transcription pipeline
+        Returns: path of the txt file.
+
+        This method will format the segments extracted from the audio into a more readable format and save the
+        results in a output.txt file.
+        '''
         output_directory = Path(os.getenv("OUTPUT_STORAGE_PATH"))
         output_directory.mkdir(parents=True, exist_ok=True)
 
@@ -28,6 +35,12 @@ class Utils:
 
     @staticmethod
     def _format_timestamp(seconds):
+        '''
+        Args: float representing seconds
+        Returns: a string with the seconds converted to hours:minutes:seconds
+
+        Used in the output_text method.
+        '''
         total_seconds = int(float(seconds))
         minutes, seconds = divmod(total_seconds, 60)
         hours, minutes = divmod(minutes, 60)
@@ -36,6 +49,13 @@ class Utils:
 
     @staticmethod
     def extract_dialogue(path:str, start:float, end:float):
+        '''
+        Args: path to the audio file, start of the audio excert, end of the audio excert
+        Returns: bytes of the excert of the audio
+
+        Extracts an audio excert. Starting in start seconds and ending in end seconds.
+        This method is to be used to extract a dialogue segment to return to the user.
+        '''
         audio = AudioSegment.from_file(path)
         clip = audio[int(start * 1000):int(end * 1000)]
         
