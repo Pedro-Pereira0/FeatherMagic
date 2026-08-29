@@ -11,6 +11,7 @@ class AgentWorkflow:
 
     def __init__(self):
         self.id_agent = IdentificationAgent()
+        self.context_agent = ContextAgent()
 
     def identification_condition(self, agent_state: AgentState):
         if agent_state.get("segments_to_inquire"):
@@ -26,6 +27,10 @@ class AgentWorkflow:
         builder.add_node("id_reasoning", self.id_agent.reasoning_node)
         builder.add_node("id_inquiring", self.id_agent.inquire_user)
         builder.add_node("id_output", self.id_agent.output_node)
+
+        #Context
+        builder.add_node("context_reasoning", self.context_agent.reasoning_node)
+        builder.add_node("context_output", self.context_agent.output_node)
 
         builder.add_edge(START, "id_reasoning")
         builder.add_conditional_edges("id_reasoning", 
