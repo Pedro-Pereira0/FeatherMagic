@@ -41,6 +41,7 @@ class AgentWorkflow:
                                       self.identification_condition,
                                       ["id_inquiring", "id_output"])
 
-        builder.add_edge("id_output", END)
+        builder.add_edge("id_output", "context_reasoning")
+        builder.add_edge("context_reasoning", END)
 
         return builder.compile(checkpointer=checkpointer)

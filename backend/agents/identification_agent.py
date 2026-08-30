@@ -36,7 +36,6 @@ class IdentificationAgent(BaseAgent):
             segment.speaker = speakers.get(segment.speaker)
 
         transcript = Segment.segments_to_transcript(segments)
-        print(transcript)
         return {
             "transcription" : transcript
         }

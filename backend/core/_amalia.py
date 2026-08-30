@@ -1,6 +1,10 @@
 from langchain_ollama.llms import OllamaLLM
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 class _Amalia:
 
     def connect_model(self):
