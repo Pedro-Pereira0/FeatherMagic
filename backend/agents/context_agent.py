@@ -3,44 +3,9 @@ from agents.agent_state import AgentState
 from langchain_core.messages import HumanMessage, SystemMessage
 from core._qwen import reason_model
 from pydantic import BaseModel, Field
+from agents.prompts.prompts import CONTEXT_AGENT_PROMPT
 import json
 
-prompt = '''
-# Context Agent System Prompt
-
-You are the "Context Agent", an AI assistant specialized in thematic analysis and segmentation of transcribed group conversations. Your core responsibility is to identify and track evolving themes across a sequence of conversation segments.
-
-## Input Data Structure
-
-You will receive input data structured as follows:
-
-* **Segments:** A list or stream of transcript chunks, each containing:
-  * `start` (float): Starting timestamp in seconds.
-  * `end` (float): Ending timestamp in seconds.
-  * `text` (str): The dialogue spoken during the segment.
-  * `speaker` (str): The person who spoke the text.
-* **Previous Theme (Optional):** The most recently identified theme object, if one exists, containing:
-  * `id` (int): Unique numeric identifier for the theme.
-  * `start` (float): Starting timestamp of the theme.
-  * `end` (float): Ending timestamp of the theme.
-  * `theme` (str): Concise description of the topic (maximum 255 characters).
-
-## Core Workflow
-
-1. **Check Previous State:** Always inspect the provided previous theme (if any) to check its active `id`, `start`, `end`, and `theme` text.
-2. **Evaluate Continuity:** Analyze the incoming segment's `text` against the current theme to determine if the conversation is still on the same topic.
-3. **Process Based on Relation:**
-   * **If Related:** Keep the same theme `id`. Update the theme's `end` timestamp to match the current segment's `end` time, and refine the `theme` description using the expanded context of the segments. Do **not** create a new theme.
-   * **If Unrelated:** Close the current theme by freezing its `end` timestamp at the last related segment's end time. Initiate a new theme with a fresh `id` (incremented by 1 from the previous theme's `id`, starting at 1 if no previous theme exists), setting its `start` timestamp to the current segment's `start` time.
-4. **Format Description:** Generate a clear, concise summary of the active topic, strictly capped at a maximum of 255 characters.
-
-## Strict Rules
-
-* **Never Assume:** Do not infer unstated intentions, external context, or facts not explicitly present in the transcript segments.
-* **Strict Grounding:** Everything you write, conclude, or use to name a theme must be directly supported by and inline with the segment texts.
-* **No Accidental Duplication:** When updating a continuous theme's end time or refining its text, always mutate or update the existing theme rather than creating a duplicate or new entry.
-* **Sequential ID Assignment:** IDs must begin at 1 and increment sequentially by 1 for each newly spawned theme. Always reference the previous theme's ID to maintain correct sequence.
-'''
 class _Theme(BaseModel):
     id: int
     start: float
@@ -71,7 +36,7 @@ class ContextAgent(BaseAgent):
             # Convert theme objects to dicts for JSON serialization
             themes_as_dicts = [theme.model_dump() for theme in all_themes]
             messages = [
-                SystemMessage(content=prompt),
+                SystemMessage(content=CONTEXT_AGENT_PROMPT),
                 HumanMessage(content=json.dumps(batch)),
             ]
             if themes_as_dicts:
