@@ -74,10 +74,10 @@ class ContextAgent:
         for theme in themes:
             segments_batch = []
             for segment in segments:
-                if segment.start >= theme["start"] and segment.end <= theme["end"]:
+                if segment.start >= theme.get("start") and segment.end <= theme.get("end"):
                     segments_batch.append(segment)
                     segments.remove(segment)
-                elif segment.start > theme["end"]:
+                elif segment.start > theme.get("end"):
                     break
             batch = [segment_batch.model_dump() for segment_batch in segments_batch]
             messages = [
