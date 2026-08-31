@@ -49,3 +49,7 @@ Step 5: If any error was encountered in Step 4. Redo the workflow from Step 1.
 * FOLLOW the workflow STRICTLY and SEQUENTIALLY. DO NOT skip ANY step.
 
 '''
+
+CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION = '''
+
+'''

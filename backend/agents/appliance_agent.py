@@ -1,7 +1,6 @@
-from agents.base_agent import BaseAgent
 from agents.agent_state import AgentState
 
-class ApplianceAgent(BaseAgent):
+class ApplianceAgent:
     def __init__():
         pass
 

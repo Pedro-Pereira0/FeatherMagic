@@ -6,7 +6,7 @@ from models.segment import Segment
 class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
     transcription: list[dict] #List[dict]
-    context: list[dict] #[time_start, time_end, Theme] [str, str]
+    context: list[dict] #[{id, time_start, time_end, Theme}]
     relevant_dialogues: list[dict] #[theme - list[speaker, dialogue]] [str, list[dict]]
     draft: list[dict] #[type of text - text] [str, str]
     iteration: int #num_iteration - prevent infinite loops

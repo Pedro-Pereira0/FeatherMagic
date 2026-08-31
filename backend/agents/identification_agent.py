@@ -1,10 +1,9 @@
-from agents.base_agent import BaseAgent
 from agents.agent_state import AgentState
 from models.segment import Segment
 from langgraph.types import interrupt
 
-class IdentificationAgent(BaseAgent):
-    def reasoning_node(self, agent_state: AgentState):
+class IdentificationAgent:
+    def extract_speaker_id(self, agent_state: AgentState):
         '''
         Iterates through each segment of the transcript. It will extract one excert per speaker.
         Each excerpt has start_time, end_time, text, and speaker.
@@ -12,8 +11,8 @@ class IdentificationAgent(BaseAgent):
         
         speakers = []
         segments_to_inquire = []
-        transcript = Segment.transcript_to_segments(agent_state.get("transcription"))
-        for segment in transcript:
+        segments = Segment.transcript_to_segments(agent_state.get("transcription"))
+        for segment in segments:
             if segment.speaker not in speakers:
                 speakers.append(segment.speaker)
                 segments_to_inquire.append(segment)
@@ -22,7 +21,7 @@ class IdentificationAgent(BaseAgent):
             "segments_to_inquire" : segments_to_inquire
         }
 
-    def output_node(self, agent_state: AgentState):
+    def apply_speaker_name(self, agent_state: AgentState):
         '''
         The output_node will alter the transcript and put the correct speaker name into the transcript.
         '''
@@ -30,7 +29,7 @@ class IdentificationAgent(BaseAgent):
         transcript = agent_state.get("transcription")
 
         segments = Segment.transcript_to_segments(agent_state.get("transcription"))
-        print(speakers)
+
         #Alter the transcript to the correct names
         for segment in segments:
             segment.speaker = speakers.get(segment.speaker)

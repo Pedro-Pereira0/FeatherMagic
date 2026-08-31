@@ -1,9 +1,9 @@
-from agents.base_agent import BaseAgent
 from agents.agent_state import AgentState
 from langchain_core.messages import HumanMessage, SystemMessage
 from core._gemini import reason_model_gemini
 from pydantic import BaseModel, Field
-from agents.prompts.prompts import CONTEXT_AGENT_PROMPT
+from models.segment import Segment
+from agents.prompts.prompts import CONTEXT_AGENT_PROMPT, CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION
 import json
 
 class _Theme(BaseModel):
@@ -15,16 +15,16 @@ class _Theme(BaseModel):
 class _ThemeList(BaseModel):
     theme_list : list[_Theme]
 
-class ContextAgent(BaseAgent):
+class ContextAgent:
 
     def __init__(self):
         self.struct_model = reason_model_gemini.with_structured_output(_ThemeList)
+        self.struct_model_dialog = reason_model_gemini.with_structured_output(Segment)
 
-    def reasoning_node(self, agent_state: AgentState):
+    def identify_theme(self, agent_state: AgentState):
         '''
-        The context agent will read the script and define the main themes in discussion during the meeting.
-        It will use the timestamps of the text to deterimine the timestamp of the theme. It will also extract the most relevant
-        phrases and its speaker.
+        The context agent will read the script and define the themes in discussion during the meeting.
+        It will use the timestamps of the text to deterimine the timestamp of the theme.
         '''
         transcript = agent_state.get("transcription")
         batch_size = 5
@@ -47,11 +47,35 @@ class ContextAgent(BaseAgent):
                 all_themes.extend(response.theme_list)
 
         no_duplicate_themes = self.remove_duplicates(all_themes)
-        print(no_duplicate_themes)
-        pass
 
-    def output_node(self, agent_state: AgentState):
-        pass
+        context = [theme.model_dump for theme in no_duplicate_themes]
+        
+        return {
+            "context" : context
+        }
+
+    def relevant_dialog_per_theme(self, agent_state: AgentState):
+        '''
+        This node will extract the most relevant dialogues and their speakers for each theme.
+        '''
+        themes = agent_state.get("context")
+
+        segments = Segment.transcript_to_segments(agent_state.get("transcription"))
+        segments_batch = []
+        for theme in themes:
+            for segment in segments:
+                if segment.start >= theme.start and segment.end <= theme.end:
+                    segments_batch.append(segment)
+                    segments.remove(segment)
+                elif segment.start > theme.end:
+                    break
+            batch = [segment_batch.model_dump() for segment_batch in segments_batch]
+            messages = [
+                SystemMessage(content=CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION),
+                HumanMessage(content=json.dumps(batch)),
+            ]
+            response = self.struct_model_dialog.invoke(messages)
+
 
 
     def remove_duplicates(self, all_themes: _ThemeList):
