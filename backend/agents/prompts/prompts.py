@@ -19,7 +19,7 @@ You will receive input data structured as follows:
     * `id` (int): Unique numeric identifier for the theme.
     * `start` (float): Starting timestamp of the theme.
     * `end` (float): Ending timestamp of the theme.
-    * `theme` (str): Concise description of the topic (maximum 255 characters).
+    * `theme` (str): Generalized description of the topic (maximum 255 characters).
 
 ## Output Data Structure
 
@@ -27,7 +27,7 @@ You will receive input data structured as follows:
     * `id` (int): Unique numeric identifier for the theme.
     * `start` (float): Starting timestamp of the theme.
     * `end` (float): Ending timestamp of the theme.
-    * `theme` (str): Concise description of the topic (maximum 255 characters).
+    * `theme` (str): Generalized description of the topic (maximum 255 characters).
 
 ## Core Workflow
 Step 1: Check the Previous Theme information.
@@ -37,7 +37,7 @@ Step 3:
         * Check if the text fits the Current Theme:
             * **IF YES:** Change the End timestamp to the segment value.
             * **IF NOT:** Create a new Theme and set it to Current Theme.
-        * Refine the text of the Theme as necessary.
+        * Refine the text of the Theme (Generalized).
 Step 4: Check if the Themes you identified are correctly done: 
     * If the ids are sequential. 
     * If the start and end times are correctly defined.
