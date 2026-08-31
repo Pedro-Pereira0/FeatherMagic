@@ -15,11 +15,21 @@ class _Theme(BaseModel):
 class _ThemeList(BaseModel):
     theme_list : list[_Theme]
 
+class _Dialog(BaseModel):
+    theme_id: int
+    start: float
+    end: float
+    text: str
+    speaker: str
+
+class _DialogList(BaseModel):
+    dialog_list : list[_Dialog]
+
 class ContextAgent:
 
     def __init__(self):
         self.struct_model = reason_model_gemini.with_structured_output(_ThemeList)
-        self.struct_model_dialog = reason_model_gemini.with_structured_output(Segment)
+        self.struct_model_dialog = reason_model_gemini.with_structured_output(_DialogList)
 
     def identify_theme(self, agent_state: AgentState):
         '''
@@ -48,7 +58,7 @@ class ContextAgent:
 
         no_duplicate_themes = self.remove_duplicates(all_themes)
 
-        context = [theme.model_dump for theme in no_duplicate_themes]
+        context = [theme.model_dump() for theme in no_duplicate_themes]
         
         return {
             "context" : context
@@ -59,23 +69,27 @@ class ContextAgent:
         This node will extract the most relevant dialogues and their speakers for each theme.
         '''
         themes = agent_state.get("context")
-
+        all_dialogs = []
         segments = Segment.transcript_to_segments(agent_state.get("transcription"))
-        segments_batch = []
         for theme in themes:
+            segments_batch = []
             for segment in segments:
-                if segment.start >= theme.start and segment.end <= theme.end:
+                if segment.start >= theme["start"] and segment.end <= theme["end"]:
                     segments_batch.append(segment)
                     segments.remove(segment)
-                elif segment.start > theme.end:
+                elif segment.start > theme["end"]:
                     break
             batch = [segment_batch.model_dump() for segment_batch in segments_batch]
             messages = [
                 SystemMessage(content=CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION),
-                HumanMessage(content=json.dumps(batch)),
+                HumanMessage(content="Theme:"+ json.dumps(theme)),
+                HumanMessage(content="Segments: " + json.dumps(batch)),
             ]
             response = self.struct_model_dialog.invoke(messages)
+            if response and response.dialog_list:
+                all_dialogs.extend(response.dialog_list)
 
+            print(all_dialogs)
 
 
     def remove_duplicates(self, all_themes: _ThemeList):
