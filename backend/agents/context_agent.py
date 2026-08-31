@@ -1,7 +1,7 @@
 from agents.base_agent import BaseAgent
 from agents.agent_state import AgentState
 from langchain_core.messages import HumanMessage, SystemMessage
-from core._qwen import reason_model
+from core._gemini import reason_model_gemini
 from pydantic import BaseModel, Field
 from agents.prompts.prompts import CONTEXT_AGENT_PROMPT
 import json
@@ -18,7 +18,7 @@ class _ThemeList(BaseModel):
 class ContextAgent(BaseAgent):
 
     def __init__(self):
-        self.struct_model = reason_model.with_structured_output(_ThemeList)
+        self.struct_model = reason_model_gemini.with_structured_output(_ThemeList)
 
     def reasoning_node(self, agent_state: AgentState):
         '''
