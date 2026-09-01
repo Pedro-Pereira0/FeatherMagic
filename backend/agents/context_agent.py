@@ -22,13 +22,13 @@ class _ThemeList(BaseModel):
     theme_list : list[_Theme]
 
 class _Dialog(BaseModel):
-    theme_id: int
     start: float
     end: float
     text: str
     speaker: str
 
 class _DialogList(BaseModel):
+    theme: _Theme
     dialog_list : list[_Dialog]
 
 class ContextAgent:
@@ -75,7 +75,7 @@ class ContextAgent:
         This node will extract the most relevant dialogues and their speakers for each theme.
         '''
         themes = agent_state.get("context")
-        all_dialogs = []
+        relevant_dialogues = []
         segments = Segment.transcript_to_segments(agent_state.get("transcription"))
         for theme in themes:
             segments_batch = []
@@ -96,11 +96,13 @@ class ContextAgent:
                 HumanMessage(content="Segments: " + json.dumps(batch)),
             ]
             response = self.struct_model_dialog.invoke(messages)
-            if response and response.dialog_list:
-                all_dialogs.extend(response.dialog_list)
+            if response and response.theme and response.dialog_list:
+                relevant_dialogues.append({"theme": response.theme.model_dump(), "dialogues": [dialog.model_dump() for dialog in response.dialog_list]})
 
-        print(all_dialogs)
-
+        print(relevant_dialogues)
+        return {
+            "relevant_dialogues" : relevant_dialogues
+        }
 
     def remove_duplicates(self, all_themes: _ThemeList):
         '''

@@ -22,12 +22,15 @@ You will receive input data structured as follows:
 
 ## Output Data Structure
 
-* **Dialog:** A list of dialogues. Each dialog has the following attributes:
-    * `theme_id`: int -> The id of the inputed theme.
+* **Dialog:** Each dialog has the following attributes:
     * `start`: float -> the start time of the selected Segment.
     * `end`: float -> the end time of the selected Segment.
     * `text`: str -> the text of the selected Segment.
     * `speaker`: str -> the speaker of the selected Segment.
+
+* **Dialog List:** Return the Theme and a List of Dialogs.
+    * `Theme`: Theme -> Theme
+    * `Dialogs`: List[Dialog] -> List of Dialogs. 
 
 ## Core Workflow
 * Step 1: Check the Theme information.
