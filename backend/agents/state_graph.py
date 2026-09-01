@@ -12,6 +12,7 @@ class AgentWorkflow:
     def __init__(self):
         self.id_agent = IdentificationAgent()
         self.context_agent = ContextAgent()
+        self.writing_agent = WritingAgent()
 
     def identification_condition(self, agent_state: AgentState):
         if agent_state.get("segments_to_inquire"):
@@ -31,6 +32,9 @@ class AgentWorkflow:
         #Context
         builder.add_node("context_id_theme", self.context_agent.identify_theme)
         builder.add_node("context_relevant_dialog_per_theme", self.context_agent.relevant_dialog_per_theme)
+
+        #Writing
+        builder.add_node("writing_draft", self.writing_agent.generate_draft)
 
         builder.add_edge(START, "id_extract_speaker_id")
         builder.add_conditional_edges("id_extract_speaker_id", 
