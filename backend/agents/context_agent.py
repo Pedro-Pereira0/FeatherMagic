@@ -3,8 +3,14 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from core._gemini import reason_model_gemini
 from pydantic import BaseModel, Field
 from models.segment import Segment
-from agents.prompts.prompts import CONTEXT_AGENT_PROMPT, CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION
+from pathlib import Path
 import json
+
+PROMPTS_DIR = Path(__file__).parent / "prompts" / "context_agent"
+CONTEXT_AGENT_PROMPT = (PROMPTS_DIR / "CONTEXT_AGENT_THEME.md").read_text(encoding="utf-8")
+CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION = (
+    PROMPTS_DIR / "CONTEXT_AGENT_DIALOG_EXTRACT.md"
+).read_text(encoding="utf-8")
 
 class _Theme(BaseModel):
     id: int
@@ -76,9 +82,13 @@ class ContextAgent:
             for segment in segments:
                 if segment.start >= theme.get("start") and segment.end <= theme.get("end"):
                     segments_batch.append(segment)
-                    segments.remove(segment)
                 elif segment.start > theme.get("end"):
                     break
+
+            #Removes the segments that have already been processed from the list.
+            for segment in segments_batch:
+                segments.remove(segment)
+
             batch = [segment_batch.model_dump() for segment_batch in segments_batch]
             messages = [
                 SystemMessage(content=CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION),
@@ -89,7 +99,7 @@ class ContextAgent:
             if response and response.dialog_list:
                 all_dialogs.extend(response.dialog_list)
 
-            print(all_dialogs)
+        print(all_dialogs)
 
 
     def remove_duplicates(self, all_themes: _ThemeList):

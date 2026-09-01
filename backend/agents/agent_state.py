@@ -7,7 +7,7 @@ class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
     transcription: list[dict] #List[dict]
     context: list[dict] #[{id, time_start, time_end, Theme}]
-    relevant_dialogues: list[dict] #{theme : dict, dialogues : list[dict]}
+    relevant_dialogues: list[dict] #{theme : dict, dialogues : list[dict]} {theme: id, str}
     draft: list[dict] #[type of text - text] [str, str]
     iteration: int #num_iteration - prevent infinite loops
 
