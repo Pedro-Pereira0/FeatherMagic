@@ -27,7 +27,7 @@ You will receive input data structured as follows:
     * `speaker`: str -> the speaker of the selected Segment.
 
 ## Output Guide
-You will have full liberty in the writing of the draft, except for a two constraints.
+You will have full liberty in the writing of the draft, except for a three constraints.
 * First Constraint: You must identify the type of text that is written. This types are:
     * Header;
     * Header 2;
@@ -39,10 +39,12 @@ You will have full liberty in the writing of the draft, except for a two constra
     * Development: An overview of EACH theme. Going in depth and CITING the relevant dialogues and their speakers.
     * Conclusion: Overall conclusion of what was discussed.
 
+* Third Constraint: The citations must be clear. They must be in quotation marks, and provide the speaker and the time in which it was spoken.
+
 ## Core Workflow
 * Step 1: First, identify all the speakers and all the talked themes for context to write the title and introduction.
 * Step 2: Write about each theme in depth, using the exact citations of the dialogues.
-* Step 3: Write the conclusion based on the dialogues and the themes and conclusions reached, if possible.
+* Step 3: Write the conclusion based on the dialogues, the themes and conclusions reached (if possible).
 
 
 ## Strict Rules
