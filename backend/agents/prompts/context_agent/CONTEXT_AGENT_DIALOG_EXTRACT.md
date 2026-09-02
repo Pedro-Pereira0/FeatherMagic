@@ -41,7 +41,7 @@ You will receive input data structured as follows:
 * Step 3: Extract, from the batch, the Segments with a significant value of importance.
 * Step 4: Build the Dialog structure for each Segment.
 * Step 5: Verify the values of the Dialog. They MUST be exactly the same as those on the Segment and Theme.
-* Step 6: If ANY value is incorrect, start everything from Step 1.  
+* Step 6: If ANY value is incorrect, for example: incorrect typing, constraint exceeded, such as character limit; start everything from Step 1.  
 
 
 ## Strict Rules
