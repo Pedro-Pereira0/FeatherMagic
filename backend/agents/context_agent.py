@@ -97,7 +97,6 @@ class ContextAgent:
             if response and response.theme and response.dialog_list:
                 relevant_dialogues.append({"theme": response.theme.model_dump(), "dialogues": [dialog.model_dump() for dialog in response.dialog_list]})
 
-        print(relevant_dialogues)
         return {
             "relevant_dialogues" : relevant_dialogues
         }
