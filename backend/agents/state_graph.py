@@ -47,6 +47,6 @@ class AgentWorkflow:
 
         builder.add_edge("id_apply_speaker_name", "context_id_theme")
         builder.add_edge("context_id_theme", "context_relevant_dialog_per_theme")
-        builder.add_edge("context_relevant_dialog_per_theme", END)
+        builder.add_edge("context_relevant_dialog_per_theme", "writing_draft")
 
         return builder.compile(checkpointer=checkpointer)

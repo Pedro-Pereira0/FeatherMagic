@@ -8,9 +8,7 @@ import json
 
 PROMPTS_DIR = Path(__file__).parent / "prompts" / "context_agent"
 CONTEXT_AGENT_PROMPT = (PROMPTS_DIR / "CONTEXT_AGENT_THEME.md").read_text(encoding="utf-8")
-CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION = (
-    PROMPTS_DIR / "CONTEXT_AGENT_DIALOG_EXTRACT.md"
-).read_text(encoding="utf-8")
+CONTEXT_AGENT_PROMPT_DIALOG_EXTRACTION = (PROMPTS_DIR / "CONTEXT_AGENT_DIALOG_EXTRACT.md").read_text(encoding="utf-8")
 
 class _Theme(BaseModel):
     id: int
