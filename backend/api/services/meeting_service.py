@@ -16,7 +16,6 @@ meeting_repo = MeetingRepository()
 #inesc-id/WhisperLv3-EP-X
 #inesc-id/WhisperLv3-X-PT-All
 
-my_whisperx = WhisperX(batch_size = 4)
 class MeetingService:
 
     def create_meeting(self, meeting_request: CreateMeetingRequest):
@@ -31,7 +30,8 @@ class MeetingService:
             creator=meeting_request.creator,
             description=meeting_request.description,
             date=meeting_request.date,
-            num_of_participants=meeting_request.num_of_participants
+            num_of_participants=meeting_request.num_of_participants,
+            language=meeting_request.language
         )
 
         new_meeting = meeting_repo.create(new_meeting)
@@ -50,6 +50,8 @@ class MeetingService:
         audio_file_path = f"{os.getenv("AUDIO_STORAGE_PATH")}/meeting_{meeting_id}.mp3"
 
         meeting = meeting_repo.get_by_id(meeting_id)
+
+        my_whisperx = WhisperX(batch_size = 4, language = meeting.get_language())
 
         audio, result = my_whisperx.transcribe(audio_file_path)
         result_aligned = my_whisperx.align(audio, result)
@@ -87,16 +89,17 @@ class MeetingService:
             "draft": [], 
             "iteration": 0,
             "segments_to_inquire" : [],
-            "speaker_names" : {} 
+            "speaker_names" : {}, 
+            "language": meeting.get_language()
         }
         thread_id = meeting.get_title() + "_" + str(meeting.get_id())
 
         meeting.set_thread_id(thread_id)
         meeting_repo.update(meeting)
-        
+        lang = meeting.get_language()
         config = {"configurable": {"thread_id": thread_id}}
         with SqliteSaver.from_conn_string("checkpoint.db") as checkpointer:
-            graph = AgentWorkflow().build_graph(checkpointer)
+            graph = AgentWorkflow(lang).build_graph(checkpointer)
             result = graph.invoke(initial_state, config = config)
 
         return result
@@ -109,6 +112,8 @@ class MeetingService:
         This method resumes a previous started report. This method is used when the user answers an HITL agent question.
         '''
         meeting = meeting_repo.get_by_id(meeting_id)
+        lang = meeting.get_language()
+
         if meeting is None:
             print("Meeting not found")
             return
@@ -122,7 +127,7 @@ class MeetingService:
         config = {"configurable": {"thread_id": meeting.get_thread_id()}}
         
         with SqliteSaver.from_conn_string("checkpoint.db") as checkpointer:
-            graph = AgentWorkflow().build_graph(checkpointer)
+            graph = AgentWorkflow(lang).build_graph(checkpointer)
             result = graph.invoke(Command(resume=user_input), config = config)
 
         return result

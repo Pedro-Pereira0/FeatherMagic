@@ -9,3 +9,4 @@ class MeetingUpdateView(BaseModel):
     title: str
     num_of_participants: int
     transcription: Any
+    language: str

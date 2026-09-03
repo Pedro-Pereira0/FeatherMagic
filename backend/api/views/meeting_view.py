@@ -11,3 +11,4 @@ class MeetingView(BaseModel):
     description: str
     date: date
     num_of_participants: int
+    language: str

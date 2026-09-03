@@ -9,10 +9,10 @@ from agents.appliance_agent import ApplianceAgent
 
 class AgentWorkflow:
 
-    def __init__(self):
+    def __init__(self, language: str):
         self.id_agent = IdentificationAgent()
         self.context_agent = ContextAgent()
-        self.writing_agent = WritingAgent()
+        self.writing_agent = WritingAgent(language)
 
     def identification_condition(self, agent_state: AgentState):
         if agent_state.get("segments_to_inquire"):

@@ -15,6 +15,7 @@ class Meeting(Base):
     description: Mapped[str] = mapped_column(String, nullable=False)
     date: Mapped[date_type] = mapped_column(Date, nullable=False)
     num_of_participants: Mapped[int] = mapped_column(Integer, nullable=False)
+    language: Mapped[str] = mapped_column(String(255), nullable=False)
     thread_id: Mapped[str] = mapped_column(String(255), nullable=True)
 
     transcription: Mapped[list] = mapped_column(JSON, nullable = True)
@@ -36,6 +37,9 @@ class Meeting(Base):
     
     def get_num_of_participants(self) -> int:   
         return self.num_of_participants
+
+    def get_language(self) -> str:
+        return self.language
 
     def get_transcription(self):
         return self.transcription
