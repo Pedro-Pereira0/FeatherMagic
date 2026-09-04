@@ -8,3 +8,4 @@ python-multipart
 python-dotenv
 langgraph-checkpoint-sqlite
 langchain-ollama
+python-docx

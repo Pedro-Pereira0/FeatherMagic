@@ -82,6 +82,7 @@ class MeetingService:
         print("Start the writing of the report")
 
         initial_state = {
+            "meeting_id": str(meeting.get_id()),
             "messages": [],
             "transcription": meeting.get_transcription(),
             "context": [], 
@@ -89,14 +90,15 @@ class MeetingService:
             "draft": [], 
             "iteration": 0,
             "segments_to_inquire" : [],
-            "speaker_names" : {}, 
-            "language": meeting.get_language()
+            "speaker_names" : {},
+            "output_file" : ""
         }
         thread_id = meeting.get_title() + "_" + str(meeting.get_id())
 
         meeting.set_thread_id(thread_id)
         meeting_repo.update(meeting)
         lang = meeting.get_language()
+
         config = {"configurable": {"thread_id": thread_id}}
         with SqliteSaver.from_conn_string("checkpoint.db") as checkpointer:
             graph = AgentWorkflow(lang).build_graph(checkpointer)

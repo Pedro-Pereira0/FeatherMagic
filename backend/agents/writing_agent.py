@@ -26,4 +26,6 @@ class WritingAgent:
         response = self.writing_agent.invoke(message)
         if response and response.content:
             print(response.content)
-        return
+        return {
+            "draft": response.content
+        }

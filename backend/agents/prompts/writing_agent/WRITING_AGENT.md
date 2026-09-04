@@ -30,13 +30,13 @@ Professional and technical reporting relies on several established conventions t
 
 Write the report as plain text, labeling each block on its own line before the content, exactly as in this example:
 
-Header: Title
+Title: Title
 
-Header 2: 1. Introduction
+Header 1: 1. Introduction
 
 Normal: The meeting addressed three themes: ...
 
-Header 2: 2. Development
+Header 1: 2. Development
 
 Header 2: 2.1 Theme: Budget Reallocation
 
@@ -44,9 +44,12 @@ Normal: [Maria, 00:04:12]: "we need to shift the Q3 budget toward hiring" ...
 
 
 * The label is one of `Header`, `Header 2`, `Normal`, followed by a colon and the text.
-* `Header` is used once, for the report title.
-* `Header 2` is used for top-level sections (Introduction, Development, Conclusion) and for each theme sub-section within Development (numbered, e.g. `2.1`, `2.2`).
+* `title` is used once, for the report title.
+* `Header 1` is used for top-level sections (Introduction, Development, Conclusion). 
+* `Header 2` is used for each theme sub-section within Development (numbered, e.g. `2.1`, `2.2`).
 * `Normal` blocks carry all prose and citations. Write naturally — use as many `Normal` blocks and paragraphs as the theme's content actually calls for; there is no fixed count to hit or avoid.
+* `list_num` is used for enumerations.
+* `list`is used for lists.
 
 ## Citation Rules (mandatory format)
 
