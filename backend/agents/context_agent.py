@@ -14,7 +14,7 @@ class _Theme(BaseModel):
     id: int
     start: float
     end: float
-    theme: str = Field(max_length=255)
+    theme: str
 
 class _ThemeList(BaseModel):
     theme_list : list[_Theme]
