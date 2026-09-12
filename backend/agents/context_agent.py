@@ -1,6 +1,7 @@
 from agents.agent_state import AgentState
 from langchain_core.messages import HumanMessage, SystemMessage
 from core._gemini import reason_model_gemini
+from core._qwen import reason_model_qwen
 from pydantic import BaseModel, Field
 from models.segment import Segment
 from pathlib import Path
@@ -32,8 +33,8 @@ class _DialogList(BaseModel):
 class ContextAgent:
 
     def __init__(self):
-        self.struct_model = reason_model_gemini.with_structured_output(_ThemeList)
-        self.struct_model_dialog = reason_model_gemini.with_structured_output(_DialogList)
+        self.struct_model = reason_model_qwen.with_structured_output(_ThemeList)
+        self.struct_model_dialog = reason_model_qwen.with_structured_output(_DialogList)
 
     def identify_theme(self, agent_state: AgentState):
         '''
