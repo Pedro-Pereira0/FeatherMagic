@@ -2,6 +2,7 @@ from agents.agent_state import AgentState
 from langchain_core.messages import HumanMessage, SystemMessage
 from core._gemini import reason_model_gemini
 from core._qwen import reason_model_qwen
+from core._groq import reason_model_groq
 from pydantic import BaseModel, Field
 from models.segment import Segment
 from pathlib import Path
@@ -33,14 +34,15 @@ class _DialogList(BaseModel):
 class ContextAgent:
 
     def __init__(self):
-        self.struct_model = reason_model_qwen.with_structured_output(_ThemeList)
-        self.struct_model_dialog = reason_model_qwen.with_structured_output(_DialogList)
+        self.struct_model = reason_model_groq.with_structured_output(_ThemeList)
+        self.struct_model_dialog = reason_model_groq.with_structured_output(_DialogList)
 
     def identify_theme(self, agent_state: AgentState):
         '''
         The context agent will read the script and define the themes in discussion during the meeting.
         It will use the timestamps of the text to deterimine the timestamp of the theme.
         '''
+        print("Context Agent: start")
         transcript = agent_state.get("transcription")
         batch_size = 5
         all_themes = []
@@ -73,6 +75,7 @@ class ContextAgent:
         '''
         This node will extract the most relevant dialogues and their speakers for each theme.
         '''
+        print("Context Agent: extracting relevant dialogues")
         themes = agent_state.get("context")
         relevant_dialogues = []
         segments = Segment.transcript_to_segments(agent_state.get("transcription"))

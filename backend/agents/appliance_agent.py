@@ -7,18 +7,20 @@ from agents.agent_state import AgentState
 
 from core._gemini import reason_model_gemini
 from core._qwen import reason_model_qwen
+from core._groq import reason_model_groq
 
 PROMPTS_DIR = Path(__file__).parent / "prompts" / "appliance_agent"
 APPLIANCE_PROMPT = (PROMPTS_DIR / "APPLIANCE_AGENT_PROMPT.md").read_text(encoding="utf-8")
 
 class ApplianceAgent:
     def __init__(self):
-        self.model_with_tools = reason_model_qwen.bind_tools(TOOLS)
+        self.model_with_tools = reason_model_groq.bind_tools(TOOLS)
 
     def appliance_in_docx(self, agent_state: AgentState):
         '''
         Will use tool calls to apply the draft to a docx file.
         '''
+        print("Appliance Agent: start")
         file_name = agent_state.get("meeting_id") + ".docx"
         path = os.getenv("DOCX_STORAGE_PATH") + "/" + file_name
         if not os.path.exists(path):
@@ -43,6 +45,7 @@ class ApplianceAgent:
         '''
         Node that will output the final result of the workflow.
         '''
+        print("Appliance Agent: finish")
         file_name = agent_state.get("meeting_id") + ".docx"
         path = os.getenv("DOCX_STORAGE_PATH") + "/" + file_name
         if not os.path.exists(path):
