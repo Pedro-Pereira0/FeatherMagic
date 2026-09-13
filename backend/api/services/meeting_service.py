@@ -1,7 +1,9 @@
 from fastapi import UploadFile
 from langgraph.types import Command
 from api.requests.create_meeting_request import CreateMeetingRequest
+from backend.repositories import repository_interface
 from repositories.meeting_repository import MeetingRepository
+from repositories.repository_interface import RepositoryInterface
 from models.meeting import Meeting
 from core.whisperX import WhisperX
 import shutil
@@ -12,7 +14,7 @@ from langgraph.checkpoint.sqlite import SqliteSaver
 import json
 import os
 
-meeting_repo = MeetingRepository()
+meeting_repo: RepositoryInterface = MeetingRepository()
 #inesc-id/WhisperLv3-EP-X
 #inesc-id/WhisperLv3-X-PT-All
 
