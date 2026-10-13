@@ -1,8 +1,9 @@
 from agents.agent_state import AgentState
 from models.segment import Segment
 from langgraph.types import interrupt
+from agents.base_agent import base_agent
 
-class IdentificationAgent:
+class IdentificationAgent(base_agent):
     def extract_speaker_id(self, agent_state: AgentState):
         '''
         Iterates through each segment of the transcript. It will extract one excert per speaker.

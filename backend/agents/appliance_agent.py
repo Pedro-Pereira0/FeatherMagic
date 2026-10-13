@@ -4,6 +4,7 @@ from docx import Document
 import os
 from langchain_core.messages import HumanMessage, SystemMessage
 from agents.agent_state import AgentState
+from agents.base_agent import base_agent
 
 from core._gemini import reason_model_gemini
 from core._qwen import reason_model_qwen
@@ -12,7 +13,7 @@ from core._groq import reason_model_groq
 PROMPTS_DIR = Path(__file__).parent / "prompts" / "appliance_agent"
 APPLIANCE_PROMPT = (PROMPTS_DIR / "APPLIANCE_AGENT_PROMPT.md").read_text(encoding="utf-8")
 
-class ApplianceAgent:
+class ApplianceAgent(base_agent):
     def __init__(self):
         self.model_with_tools = reason_model_groq.bind_tools(TOOLS)
 
@@ -34,7 +35,7 @@ class ApplianceAgent:
             *agent_state.get("messages", []),
         ]
 
-        response = self.model_with_tools.invoke(message)
+        response = self.model_with_tools.invoke(self.sanitize_messages(message))
 
         return{
             "messages":[response],
