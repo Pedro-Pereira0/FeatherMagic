@@ -4,6 +4,8 @@ from core._amalia import writer_model_amalia
 from core._gemini import reason_model_gemini
 from core._groq import reason_model_groq
 from core._qwen import reason_model_qwen
+from core._claude import reason_model_claude
+
 from agents.base_agent import base_agent
 from pathlib import Path
 import json
@@ -15,9 +17,9 @@ class WritingAgent(base_agent):
     def __init__(self, language: str):
         #Using the same model, for now
         if language == "pt":
-            self.writing_agent = reason_model_groq
+            self.writing_agent = reason_model_gemini
         else:
-            self.writing_agent = reason_model_groq
+            self.writing_agent = reason_model_gemini
 
     def generate_draft(self, agent_state: AgentState):
         '''Node that will generate a draft of the meeting report based on the context and relevant dialogues.'''

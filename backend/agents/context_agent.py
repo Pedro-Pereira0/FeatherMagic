@@ -3,6 +3,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from core._gemini import reason_model_gemini
 from core._qwen import reason_model_qwen
 from core._groq import reason_model_groq
+from core._claude import reason_model_claude
 from agents.base_agent import base_agent
 from pydantic import BaseModel, Field
 from models.segment import Segment
@@ -35,8 +36,8 @@ class _DialogList(BaseModel):
 class ContextAgent(base_agent):
 
     def __init__(self):
-        self.struct_model = reason_model_groq.with_structured_output(_ThemeList, strict = True)
-        self.struct_model_dialog = reason_model_groq.with_structured_output(_DialogList, strict = True)
+        self.struct_model = reason_model_gemini.with_structured_output(_ThemeList, strict = True)
+        self.struct_model_dialog = reason_model_gemini.with_structured_output(_DialogList, strict = True)
 
     def identify_theme(self, agent_state: AgentState):
         '''
@@ -60,7 +61,7 @@ class ContextAgent(base_agent):
             if themes_as_dicts:
                 messages.append(HumanMessage(content=json.dumps(themes_as_dicts[-1])))
 
-            
+            print(f"Context Agent: processing batch {i // batch_size + 1} of {len(transcript) // batch_size + 1}")
             response = self.struct_model.invoke(self.sanitize_messages(messages))
             if response and response.theme_list:
                 all_themes.extend(response.theme_list)
@@ -99,6 +100,7 @@ class ContextAgent(base_agent):
                 HumanMessage(content="Theme:"+ json.dumps(theme)),
                 HumanMessage(content="Segments: " + json.dumps(batch)),
             ]
+            print(f"Context Agent: extracting relevant dialogues for theme {theme.get('id')}")
             response = self.struct_model_dialog.invoke(self.sanitize_messages(messages))
             if response and response.theme and response.dialog_list:
                 relevant_dialogues.append({"theme": response.theme.model_dump(), "dialogues": [dialog.model_dump() for dialog in response.dialog_list]})
